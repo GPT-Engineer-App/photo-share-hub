@@ -1,17 +1,25 @@
-// Update this page (the content is just a fallback if you fail and example)
-// Use chakra-ui
-import { Container, Text, VStack } from "@chakra-ui/react";
-
-// Example of using react-icons
-// import { FaRocket } from "react-icons/fa";
-// <IconButton aria-label="Add" icon={<FaRocket />} size="lg" />; // IconButton would also have to be imported from chakra
+import { Container, Text, VStack, Heading, Box, Image, SimpleGrid } from "@chakra-ui/react";
+import { useState } from "react";
 
 const Index = () => {
+  const [photos, setPhotos] = useState([
+    { id: 1, src: "/images/photo1.jpg", alt: "Photo 1" },
+    { id: 2, src: "/images/photo2.jpg", alt: "Photo 2" },
+    { id: 3, src: "/images/photo3.jpg", alt: "Photo 3" },
+  ]);
+
   return (
-    <Container centerContent maxW="container.md" height="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
-      <VStack spacing={4}>
-        <Text fontSize="2xl">Your Blank Canvas</Text>
-        <Text>Chat with the agent to start making edits.</Text>
+    <Container centerContent maxW="container.lg" py={10}>
+      <VStack spacing={8}>
+        <Heading as="h1" size="2xl">Welcome to PhotoShare</Heading>
+        <Text fontSize="xl">A social media platform for sharing your favorite photos.</Text>
+        <SimpleGrid columns={[1, 2, 3]} spacing={10}>
+          {photos.map(photo => (
+            <Box key={photo.id} boxShadow="md" borderRadius="md" overflow="hidden">
+              <Image src={photo.src} alt={photo.alt} />
+            </Box>
+          ))}
+        </SimpleGrid>
       </VStack>
     </Container>
   );
